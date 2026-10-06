@@ -1,0 +1,157 @@
+/* || RESET */
+
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+button {
+    font: inherit;
+}
+
+/* || VARIABLES */
+
+:root {
+    /* FONTS */
+    --font-family: "Arial", sans-serif;
+    --font-size: clamp(1rem, 1vw + 0.5rem, 1.125rem);
+
+    /* COLORS */
+    --font-color: black;
+    --secondary-font-color: gray;
+    --bg-color: whitesmoke;
+    --btn-bg-color: black;
+    --btn-font-color: whitesmoke;
+}
+
+/* || GENERAL STYLES */
+
+html {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: var(--font-color);
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+button {
+    border-radius: 20px;
+    width: fit-content;
+    cursor: pointer;
+    color: var(--btn-font-color);
+    background-color: var(--btn-bg-color);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+ol {
+    list-style-type: none;
+}
+
+ol time {
+    text-align: right;
+}
+
+ol h2 {
+    text-align: left;
+}
+
+li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 2fr);
+    align-items: center;
+}
+
+li time,
+li h2 {
+    padding: 1rem;
+}
+
+/* || UTILITY STYLES */
+
+.secondary-color {
+    color: var(--secondary-font-color);
+}
+
+/* || HEADER */
+
+.header {
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+/* || MAIN */
+
+.main__description {
+    width: 100%;
+    text-align: center;
+}
+
+/* RULER */
+
+.timeline-marker {
+    height: 100%;
+    background-color: black;
+    width: 3px;
+    justify-self: center;
+    position: relative; /* Referência para alinhar as bolinhas */
+    height: calc(100% + 50px);
+}
+
+/* ROUNDED MARKER */
+
+.timeline-marker::before {
+    content: "";
+    background-color: black;
+    width: 20px; /* Tamanho da bolinha */
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; /* Descer as bolinhas e colocar o topo delas no meio da régua */
+    left: 50%; /* Centralizar lado esquerdo da bolinha na régua */
+    transform: translate(
+        -50%,
+        -50%
+    ); /* Fazer o centro da bolinha o centro da régua, ajustando top e left */
+}
+
+/* || RESPONSIVE */
+
+@media (max-width: 600px) {
+    li {
+        grid-template-columns: 2rem minmax(0, 1fr); /* Duas colunas */
+    }
+
+    .timeline-marker {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+    }
+
+    li time,
+    li h2 {
+        grid-column: 2;
+        text-align: left;
+    }
+}
